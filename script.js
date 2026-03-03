@@ -122,7 +122,6 @@ document.addEventListener("click", function (e) {
 
 let draggedItem = null;
 
-// When drag starts
 document.addEventListener("dragstart", function (e) {
     if (e.target.tagName === "LI") {
         draggedItem = e.target;
@@ -132,14 +131,12 @@ document.addEventListener("dragstart", function (e) {
     }
 });
 
-// Allow dropping
 document.addEventListener("dragover", function (e) {
     if (e.target.closest(".listContainer")) {
         e.preventDefault(); // IMPORTANT
     }
 });
 
-// When dropped
 document.addEventListener("drop", function (e) {
     const ul = e.target.closest(".listContainer");
 
@@ -152,8 +149,6 @@ document.addEventListener("drop", function (e) {
     }
 });
 
-
-// When drag ends
 document.addEventListener("dragend", function (e) {
     if (draggedItem) {
         draggedItem.style.display = "flex";
@@ -188,5 +183,6 @@ function showBoard() {
 }
 
 showBoard()
+
 
 
