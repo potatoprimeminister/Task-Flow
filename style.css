@@ -1,210 +1,174 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
 *{
     margin:0px;
     padding:0px;
     box-sizing: border-box;
-    font-family:'Montserrat', sans-serif;
+    font-family:'Delius', sans-serif;
+}
+html {
+    height: 100%;
 }
 body{
-    background: #de0dbf;
-    background: linear-gradient(90deg,rgba(222, 13, 191, 1) 0%, rgba(9, 9, 121, 1) 65%, rgba(0, 212, 255, 1) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100vh;
+    background: #d95102;
+    background: linear-gradient(321deg,rgba(217, 81, 2, 1) 0%, rgba(242, 144, 87, 1) 50%, rgba(252, 176, 69, 1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-.container{
-    background-color:aliceblue;
-    border-radius: 20px;
-    box-shadow: 0 5px 15px rgb(65, 63, 63);
-    position: relative;
-    overflow: hidden;
-    width: 760px;
-    max-width: 100%;
-    min-height: 480px;
-}
-
-.container p{
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.3px;
-    margin: 20px 0;
-}
-
-.container span{
-    font-size: 12px;
-}
-
-.container a{
-   color:gray;
-   font-size: 13px;
-   text-decoration: none;
-   margin: 15px;
-}
-
-.container button{
-    background-color: rgb(107, 107, 244);
-    color:white;
-    font-size: 13px;
-    padding: 10px 45px;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-top: 10px;
+ul li{
+    list-style: none;
+    font-size: 16px;
+    padding: 12px 0px 12px 12px;
+    user-select: none;
     cursor: pointer;
-}
-
-.container button.hidden{
-    background-color: transparent;
-    border-color: #eee;
-}
-
-.container button:hover{
-    background-color: rgb(85, 85, 220);
-}
-
-.container form{
-    background-color:aliceblue;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    height:100%;
-}
-
-.container input{
-    background-color: #eee;
-    border: none;
-    margin:8px 0;
-    padding: 10px 15px;
-    font-size:13px;
-    border-radius: 20px;
-    width: 100%;
-    outline: none;
-}
-
-.form-container{
-    position: absolute;
-    top:0;
-    height: 100%;
-    transition: all 0.6s ease-in-out;
-}
-
-.sign-in{
-    left:0;
-    width: 50%;
-    z-index: 2;
-}
-
-.container.active .sign-in{
-    transform: translateX(100%);
-}
-
-.sign-up{
-    left:0;
-    width: 50%;
-    opacity: 0;
-    z-index: 1;
-    transform: translateX(0);
-}
-
-.container.active .sign-up{
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-}
-
-@keyframes move{
-    0%,49.99%{
-        opacity: 0;
-        z-index: 1;   
-    }
-    50%{
-        opacity: 1;
-        z-index: 5; 
-    }
-}
-
-.social-icons a{
-    border: 1px solid #ccc;
-    border-radius: 20%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 3px;
-    width: 40px;
-    height: 40px;
-}
-
-.toggle-container{
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: all 0.6s ease-in-out;  
-    border-radius: 150px 0 0 100px;
-    z-index: 1000; 
-}
-
-.container.active .toggle-container{
-    transform: translateX(-100%);
-    border-radius: 0 150px 100px 0;
-}
-
-.toggle{
-    background-color: #FFB6C1;
-    background: linear-gradient(to right, #c6a8ff, #FFB6C1);
-    color: white;
     position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
+    overflow: hidden;
+    border-radius: 12px;
+    display: flex;              
+    align-items: center;        
+    justify-content: space-between;
+
+    transition: background 0.2s ease-in-out;
 }
 
-.container.active .toggle{
-    transform: translateX(50%);
+ul li:hover{
+    background-color:#fff3e093;
 }
 
-.toggle-panel{
-    position: absolute;
-    width: 50%;
-    height: 100%;
+.board {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 0 30px;
+    align-items: flex-start;   /* keeps button aligned to top */
+    gap: 20px;
+    padding: 20px;
+}
+
+.list{
+    background-color: #fff3e067;
+    padding: 15px;
+    width: 250px;
+    border-radius: 10px;
+}
+.name{
+    display: flex;
     text-align: center;
-    top: 0;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
+    align-items: center;
+    justify-content: space-between;
+}
+.name h1 {
+    font-size: 28px;
+    font-weight: 600;
+}
+.name i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s ease, transform 0.1s ease;
 }
 
-.toggle-left{
-    transform: translateX(-200%);
+.name i:hover{
+    background-color:#fff3e093;
+    transform: scale(1.05);
 }
 
-.container.active .toggle-left{
-    transform:translateX(0) ;
+.addList{
+    height: fit-content;
+    padding: 15px;
+    border-radius: 10px;
+    height: fit-content; 
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color:  #fff3e067;
+    transition: background 0.3s ease-in-out;
+}
+.addListBtn{
+    height: fit-content;
+    padding: 15px;
+    border-radius: 10px;
+    height: fit-content; 
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: transparent;
+    transition: background 0.3s ease-in-out;
+}
+.addCardBtn{
+    height: fit-content;
+    padding: 15px;
+    border-radius: 10px;
+    height: fit-content; 
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: transparent;
+    transition: background 0.3s ease-in-out;
+}
+.addList:hover{
+    background-color:#fff3e093
 }
 
-.toggle-right{
-    right: 0;
-    transform: translateX(0);
+.showCardInput:hover {
+    background-color: #fff3e093;
 }
 
-.container.active .toggle-right{
-    transform:translateX(200%) ;
+.cardButtons{
+    padding-top:4px;
 }
 
+.primaryBtn {
+    background-color: #0275D9;
+    color: white;
+}
 
+.primaryBtn:hover {
+    background-color: #0289ff;
+}
 
+#listHiddenBtn{
+    background-color: #0275D9;
+    color: white;
+}
+#listHiddenBtn:hover{
+    background-color: #0289ff;
+}
+
+.listButtons{
+    margin-top: 8px;
+}
+
+.listInput{
+    height: fit-content;
+    padding: 15px;
+    border-radius: 10px;
+    height: fit-content; 
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color:  #fff3e067;
+    transition: background 0.3s ease-in-out;
+}
+.inputBox{
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.85);
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: box-shadow 0.2s ease;
+}
+.inputBox{
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+.hidden {
+    display: none;
+}
+
+.cardInput {
+    margin-top: 10px;
+}
