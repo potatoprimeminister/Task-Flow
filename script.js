@@ -3,14 +3,14 @@ const listInputSection = document.getElementById("listInputSection");
 const showAddListBtn = document.getElementById("showAddListBtn");
 const listInputBox = document.getElementById("listInputBox");
 
-/* ---------------- LIST INPUT TOGGLE ---------------- */
+/*LIST INPUT TOGGLE */
 
 function toggleListInput() {
     listInputSection.classList.toggle("hidden");
     showAddListBtn.classList.toggle("hidden");
 }
 
-/* ---------------- ADD LIST ---------------- */
+/*ADD LIST */
 
 function addList() {
     const listTitle = listInputBox.value.trim();
@@ -54,7 +54,7 @@ function addList() {
     toggleListInput();
 }
 
-/* ---------------- GLOBAL CLICK HANDLER ---------------- */
+/*GLOBAL CLICK HANDLER */
 
 document.addEventListener("click", function (e) {
 
@@ -88,6 +88,8 @@ document.addEventListener("click", function (e) {
         const li = document.createElement("li");
         li.textContent = task;
 
+        li.setAttribute("draggable", "true");
+
         const span = document.createElement("span");
         span.innerHTML = '<i class="fa-solid fa-trash"></i>';
         li.appendChild(span);
@@ -118,7 +120,48 @@ document.addEventListener("click", function (e) {
     saveData()
 });
 
-/* ---------------- LIST BUTTON HANDLING ---------------- */
+let draggedItem = null;
+
+// When drag starts
+document.addEventListener("dragstart", function (e) {
+    if (e.target.tagName === "LI") {
+        draggedItem = e.target;
+        setTimeout(() => {
+            e.target.style.display = "none";
+        }, 0);
+    }
+});
+
+// Allow dropping
+document.addEventListener("dragover", function (e) {
+    if (e.target.closest(".listContainer")) {
+        e.preventDefault(); // IMPORTANT
+    }
+});
+
+// When dropped
+document.addEventListener("drop", function (e) {
+    const ul = e.target.closest(".listContainer");
+
+    if (ul && draggedItem) {
+        ul.appendChild(draggedItem);
+        draggedItem.style.display = "flex";
+        draggedItem = null;
+
+        saveData();
+    }
+});
+
+
+// When drag ends
+document.addEventListener("dragend", function (e) {
+    if (draggedItem) {
+        draggedItem.style.display = "flex";
+        draggedItem = null;
+    }
+});
+
+/* LIST BUTTON HANDLING*/
 
 document.getElementById("showAddListBtn").addEventListener("click", toggleListInput);
 
@@ -137,6 +180,13 @@ function showBoard() {
     if (data) {
         board.insertAdjacentHTML("afterbegin", data);
     }
+
+    // Make restored cards draggable
+    document.querySelectorAll("li").forEach(li => {
+        li.setAttribute("draggable", "true");
+    });
 }
 
 showBoard()
+
+
